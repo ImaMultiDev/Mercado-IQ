@@ -20,14 +20,15 @@ export function CategoryForms({ initialCategories }: { initialCategories: Row[] 
 
   async function onCreate(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
     setCreateError(null);
-    const fd = new FormData(e.currentTarget);
+    const fd = new FormData(form);
     const r = await createCategory(fd);
     if (!r.ok) {
       setCreateError(r.message);
       return;
     }
-    e.currentTarget.reset();
+    form.reset();
     router.refresh();
   }
 

@@ -16,6 +16,11 @@ Aplicación web para **inteligencia de mercado** en compraventa de segunda mano 
 - **Calculadora de rentabilidad** en cliente: precio de compra, venta estimada, coste de transporte, número de portes (1 o 2), coste de reparación/limpieza.
 - Modos **reventa directa** (sin coste de reparación considerado) y **con reacondicionamiento** (campo de reparación activo).
 
+### Acceso
+
+- **Login** con usuario y contraseña definidos en variables de entorno (`AUTH_USERNAME`, `AUTH_PASSWORD`).
+- Cookie de sesión **firmada con HMAC-SHA256** (`AUTH_SECRET`), sin librerías JWT externas (solo **Web Crypto**, compatible con middleware Edge).
+
 ### UX
 
 - Interfaz minimalista, búsqueda de productos por GET (`/products?q=`), formularios cortos y flujo pensado para introducir datos en pocos segundos.
@@ -34,19 +39,24 @@ Aplicación web para **inteligencia de mercado** en compraventa de segunda mano 
 
 ```
 src/
-├── app/                    # Rutas App Router
-│   ├── page.tsx            # Inicio / resumen
-│   ├── categories/         # CRUD categorías
-│   ├── products/           # Lista, detalle, alta
-│   └── calculator/         # Rentabilidad
+├── app/
+│   ├── (main)/             # Rutas con shell (protegidas por middleware)
+│   │   ├── page.tsx
+│   │   ├── categories/
+│   │   ├── products/
+│   │   └── calculator/
+│   ├── login/              # Página de acceso (pública)
+│   ├── layout.tsx
+│   └── globals.css
+├── middleware.ts           # Comprueba cookie de sesión
 ├── components/
-│   ├── layout/             # AppShell (navegación)
+│   ├── auth/
+│   ├── layout/
 │   ├── products/
 │   ├── categories/
 │   └── calculator/
-├── generated/prisma/       # Cliente Prisma generado (no editar)
-├── lib/                    # Utilidades: prisma, din formato, estadísticas, validación
-└── server/actions/         # Server Actions (mutaciones)
+├── lib/                    # Incl. auth-token (firma de sesión)
+└── server/actions/         # Incl. auth.ts (login / logout)
 prisma/
 └── schema.prisma
 ```
@@ -89,7 +99,7 @@ prisma/
    cp .env.example .env
    ```
 
-   Edita `.env` y asigna una `DATABASE_URL` válida (PostgreSQL local o Railway).
+   Edita `.env`: `DATABASE_URL`, y para el acceso privado `AUTH_USERNAME`, `AUTH_PASSWORD` y `AUTH_SECRET` (ver `.env.example`).
 
 4. Sincronizar el esquema con la base de datos (este proyecto usa **`db push`**, sin carpeta `migrations`):
 
@@ -111,7 +121,7 @@ prisma/
    Crea un servicio **PostgreSQL** y copia la cadena de conexión (formato `postgresql://...`). Con `DATABASE_URL` apuntando a Railway, ejecuta `npx prisma db push` cuando cambies `schema.prisma`.
 
 2. **Vercel**  
-   Importa el repositorio, define la variable de entorno `DATABASE_URL` con la misma URL. El script `postinstall` ejecuta `prisma generate` durante el build.
+   Importa el repositorio y define **`DATABASE_URL`**, **`AUTH_USERNAME`**, **`AUTH_PASSWORD`** y **`AUTH_SECRET`** (mismos valores que en local). El script `postinstall` ejecuta `prisma generate` durante el build.
 
 3. **Cambios de esquema**  
    Tras modificar `schema.prisma`, ejecuta `npx prisma db push` contra la URL de producción (o automatízalo en CI si lo prefieres). Si más adiante necesitas historial versionado de SQL, puedes introducir `prisma migrate dev` desde una base limpia.

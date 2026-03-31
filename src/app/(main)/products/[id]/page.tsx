@@ -169,8 +169,10 @@ export default async function ProductDetailPage({ params }: Props) {
               categoryId: product.categoryId,
               brand: product.brand,
               model: product.model,
-              newPrice: product.newPrice,
-              targetPrice: product.targetPrice,
+              newPrice:
+                product.newPrice != null ? String(product.newPrice) : null,
+              targetPrice:
+                product.targetPrice != null ? String(product.targetPrice) : null,
               notes: product.notes,
               imageUrl: product.imageUrl,
             }}

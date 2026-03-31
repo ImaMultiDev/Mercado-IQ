@@ -10,8 +10,9 @@ type ProductRow = {
   categoryId: string;
   brand: string;
   model: string;
-  newPrice: { toString(): string } | null;
-  targetPrice: { toString(): string } | null;
+  /** Cadenas serializables (nunca Decimal de Prisma en props de cliente). */
+  newPrice: string | null;
+  targetPrice: string | null;
   notes: string | null;
   imageUrl: string | null;
 };
@@ -108,9 +109,7 @@ export function ProductForm({
             inputMode="decimal"
             placeholder="Opcional"
             className={`numeric ${inputClass}`}
-            defaultValue={
-              product?.newPrice != null ? String(product.newPrice) : undefined
-            }
+            defaultValue={product?.newPrice ?? undefined}
           />
         </div>
         <div>
@@ -124,11 +123,7 @@ export function ProductForm({
             inputMode="decimal"
             placeholder="Opcional"
             className={`numeric ${inputClass}`}
-            defaultValue={
-              product?.targetPrice != null
-                ? String(product.targetPrice)
-                : undefined
-            }
+            defaultValue={product?.targetPrice ?? undefined}
           />
         </div>
       </div>
