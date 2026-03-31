@@ -11,7 +11,7 @@ import {
 type Row = { id: string; name: string; productCount: number };
 
 const inputClass =
-  "flex-1 rounded-md border border-[var(--border)] bg-[var(--background)] px-2 py-1.5 text-sm outline-none ring-[var(--accent)] focus:ring-2";
+  "flex-1 rounded-lg border border-[var(--border)] bg-[var(--surface-raised)] px-2 py-1.5 text-sm text-[var(--text)] outline-none ring-[var(--accent)] focus:ring-2";
 
 export function CategoryForms({ initialCategories }: { initialCategories: Row[] }) {
   const router = useRouter();
@@ -59,7 +59,7 @@ export function CategoryForms({ initialCategories }: { initialCategories: Row[] 
     <div className="mt-8 space-y-8">
       <section>
         <h2 className="text-sm font-medium text-[var(--muted)]">Nueva categoría</h2>
-        <form onSubmit={onCreate} className="mt-2 flex gap-2">
+        <form onSubmit={onCreate} className="mt-3 flex flex-wrap gap-2">
           <input
             name="name"
             placeholder="Nombre"
@@ -84,7 +84,7 @@ export function CategoryForms({ initialCategories }: { initialCategories: Row[] 
         {initialCategories.length === 0 ? (
           <p className="mt-3 text-sm text-[var(--muted)]">Sin categorías todavía.</p>
         ) : (
-          <ul className="mt-3 divide-y divide-[var(--border)] border border-[var(--border)] rounded-lg bg-[var(--surface)]">
+          <ul className="mt-3 divide-y divide-[var(--border)] overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)] shadow-[var(--shadow-card)]">
             {initialCategories.map((c) => (
               <li key={c.id} className="p-2">
                 <form

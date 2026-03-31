@@ -7,7 +7,7 @@ import { createObservation } from "@/server/actions/observations";
 import { conditionLabel } from "@/lib/condition-labels";
 
 const inputClass =
-  "mt-1 w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-2 outline-none ring-[var(--accent)] focus:ring-2";
+  "mt-1 w-full rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] px-3 py-2.5 text-[var(--text)] outline-none ring-[var(--accent)] focus:ring-2";
 
 export function ObservationForm({ productId }: { productId: string }) {
   const router = useRouter();

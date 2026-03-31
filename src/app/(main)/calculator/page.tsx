@@ -7,10 +7,12 @@ export const metadata = {
 export default function CalculatorPage() {
   return (
     <div className="mx-auto max-w-xl">
-      <h1 className="text-xl font-semibold tracking-tight">Rentabilidad</h1>
-      <p className="mt-1 text-sm text-[var(--muted)]">
-        Coste total incluye compra, portes (× envíos) y reparación / limpieza.
-      </p>
+      <header className="border-b border-[var(--border)] pb-6">
+        <h1 className="text-2xl font-semibold tracking-tight text-[var(--text)]">Rentabilidad</h1>
+        <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+          Coste total incluye compra, portes (× envíos) y reparación / limpieza.
+        </p>
+      </header>
       <div className="mt-8">
         <ProfitCalculator />
       </div>

@@ -18,7 +18,7 @@ type ProductRow = {
 };
 
 const inputClass =
-  "mt-1 w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-2 outline-none ring-[var(--accent)] focus:ring-2";
+  "mt-1 w-full rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] px-3 py-2.5 text-[var(--text)] outline-none ring-[var(--accent)] focus:ring-2";
 
 export function ProductForm({
   categories,
@@ -159,7 +159,7 @@ export function ProductForm({
       )}
       <button
         type="submit"
-        className="rounded-md bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white"
+        className="rounded-xl bg-[var(--accent)] px-4 py-2.5 text-sm font-medium text-white shadow-[var(--shadow-card)]"
       >
         {mode === "create" ? "Guardar producto" : "Actualizar"}
       </button>

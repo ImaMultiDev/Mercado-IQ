@@ -12,17 +12,20 @@ export default async function CategoriesPage() {
 
   return (
     <div className="mx-auto max-w-xl">
-      <div className="flex items-end justify-between gap-4">
+      <header className="flex items-end justify-between gap-4 border-b border-[var(--border)] pb-6">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">Categorías</h1>
-          <p className="mt-1 text-sm text-[var(--muted)]">
+          <h1 className="text-2xl font-semibold tracking-tight text-[var(--text)]">Categorías</h1>
+          <p className="mt-2 text-sm text-[var(--muted)]">
             Ej.: bicis spinning, remoergómetros, elípticas…
           </p>
         </div>
-        <Link href="/products" className="text-sm text-[var(--muted)] hover:text-[var(--text)]">
+        <Link
+          href="/products"
+          className="shrink-0 text-sm font-medium text-[var(--accent)] hover:underline"
+        >
           Productos
         </Link>
-      </div>
+      </header>
 
       <CategoryForms
         initialCategories={categories.map((c) => ({

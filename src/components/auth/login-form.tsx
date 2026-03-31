@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import { loginAction, type LoginState } from "@/server/actions/auth";
 
 const inputClass =
-  "mt-1 w-full rounded-md border border-[var(--border)] bg-[var(--surface)] px-3 py-2 outline-none ring-[var(--accent)] focus:ring-2";
+  "mt-1 w-full rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] px-3 py-2.5 text-[var(--text)] outline-none ring-[var(--accent)] focus:ring-2";
 
 export function LoginForm() {
   const [state, formAction, pending] = useActionState(loginAction, undefined as LoginState | undefined);
@@ -47,7 +47,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-md bg-[var(--accent)] py-2 text-sm font-medium text-white disabled:opacity-60"
+        className="w-full rounded-xl bg-[var(--accent)] py-2.5 text-sm font-medium text-white shadow-[var(--shadow-card)] disabled:opacity-60"
       >
         {pending ? "Entrando…" : "Entrar"}
       </button>

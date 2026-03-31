@@ -13,8 +13,10 @@ export default async function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-4">
-      <div className="w-full max-w-sm rounded-lg border border-[var(--border)] bg-[var(--surface)] p-6 shadow-sm">
-        <h1 className="text-center text-lg font-semibold tracking-tight">Mercado IQ</h1>
+      <div className="w-full max-w-sm rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-7 shadow-[var(--shadow-card)]">
+        <h1 className="text-center text-lg font-semibold tracking-tight text-[var(--text)]">
+          Mercado IQ
+        </h1>
         <p className="mt-1 text-center text-xs text-[var(--muted)]">Acceso privado</p>
         <div className="mt-6">
           <LoginForm />

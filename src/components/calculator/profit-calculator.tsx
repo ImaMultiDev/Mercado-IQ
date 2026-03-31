@@ -6,7 +6,7 @@ import { parseMoneyInput } from "@/lib/money";
 type Mode = "direct" | "refurb";
 
 const field =
-  "mt-1 w-full rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-2 outline-none ring-[var(--accent)] focus:ring-2";
+  "mt-1 w-full rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] px-3 py-2.5 text-[var(--text)] outline-none ring-[var(--accent)] focus:ring-2";
 
 export function ProfitCalculator() {
   const [mode, setMode] = useState<Mode>("direct");
@@ -29,7 +29,7 @@ export function ProfitCalculator() {
   }, [buy, sell, transport, shipments, repair]);
 
   return (
-    <div className="space-y-6 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4">
+    <div className="space-y-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow-card)]">
       <fieldset>
         <legend className="text-sm font-medium text-[var(--muted)]">Escenario</legend>
         <div className="mt-2 flex gap-4 text-sm">
